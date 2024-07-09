@@ -125,4 +125,24 @@ class PostController extends Controller
         
         return new PostResource(true, 'Data post berhasil diubah.', $post);
     }
+
+    /**
+     * destroy
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function destroy($id)
+    {
+        // Find post by ID
+        $post = Post::find($id);
+
+        // Delete image
+        Storage::delete('public/posts/'.basename($post->image));
+
+        // Delete post
+        $post->delete();
+        
+        return new PostResource(true, 'Data post berhasil dihapus.', null);
+    }
 }
