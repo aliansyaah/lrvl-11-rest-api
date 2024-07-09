@@ -59,4 +59,19 @@ class PostController extends Controller
 
         return new PostResource(true, 'Data post berhasil ditambahkan.', $post);
     }
+
+    /**
+     * show
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    public function show($id)
+    {
+        // Find post by ID
+        $post = Post::find($id);
+
+        // Return single post as a resource
+        return new PostResource(true, 'Detail data post.', $post);
+    }
 }
