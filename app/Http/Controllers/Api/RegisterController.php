@@ -56,4 +56,30 @@ class RegisterController extends BaseController
             return $this->sendError('Unauthorized', ['error' => 'Unauthorized']);
         }
     }
+
+    public function logout(Request $request): JsonResponse
+    {
+        // $user = Auth::user();
+        // dd($request->user()->currentAccessToken());
+        
+        // Get all user token
+        // dd($user->tokens()->get()->pluck('token'));
+        
+        // Revoke all user token
+        // $user->tokens()->delete();
+        
+        // Revoke the token that was used to authenticate the current request
+        // $request->user()->currentAccessToken()->delete();
+        // $user->currentAccessToken()->delete();
+        
+        // Revoke a specific token...
+        // $user->tokens()->where('id', 3)->delete();
+
+        if ($request->user()->currentAccessToken()->delete()) {
+            return $this->sendResponse(null, 'User logout successfully');
+        } else {
+            return $this->sendError('Logout failed', ['error' => 'Logout failed']);
+        }
+
+    }
 }
