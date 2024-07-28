@@ -12,12 +12,12 @@ Route::get('/user', function (Request $request) {
 // Post
 Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class);
 
-Route::controller(RegisterController::class)->group(function(){
+Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'register');
     Route::post('login', 'login');
 });
 
-Route::middleware('auth:sanctum')->group(function(){
+Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [RegisterController::class, 'logout'])->name('logout');
     Route::resource('products', ProductController::class);
 });
