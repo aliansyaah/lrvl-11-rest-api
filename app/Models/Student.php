@@ -16,6 +16,7 @@ class Student extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
+    // public function profile(): HasOne
     public function profile()
     {
         return $this->hasOne(Profile::class);
@@ -26,5 +27,16 @@ class Student extends Model
         */
         // return $this->hasOne(Profile::class, 'stu_id');
         // return $this->hasOne(Profile::class, 'stu_id', 'id_student);
+    }
+
+    /**
+     * Get all of the comments for the Student
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    // public function comments(): HasMany
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
